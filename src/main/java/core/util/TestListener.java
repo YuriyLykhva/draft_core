@@ -1,5 +1,7 @@
 package core.util;
 
+import com.assertthat.selenium_shutterbug.core.Capture;
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import core.driver.WebDriverFactory;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -12,6 +14,9 @@ import java.io.File;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+
+import static core.driver.WebDriverFactory.getDriver;
+import static core.util.Constants.USE_FULL_PAGE_SCREENSHOT;
 
 public class TestListener implements ITestListener {
 
@@ -45,16 +50,19 @@ public class TestListener implements ITestListener {
     }
 
     private void saveScreenshot() {
-        File screenCapture = ((TakesScreenshot) WebDriverFactory
-                .getDriver())
-                .getScreenshotAs(OutputType.FILE);
-        try {
-            FileUtils.copyFile(screenCapture, new File(
-                    ".//target/screenshots/"
-                            + getCurrentTimeAsString() +
-                            ".png"));
-        } catch (IOException e) {
-            log("Failed to save screenshot: " + e.getLocalizedMessage());
+        if(USE_FULL_PAGE_SCREENSHOT) {
+            File screenCapture = ((TakesScreenshot) getDriver())
+                    .getScreenshotAs(OutputType.FILE);
+            try {
+                FileUtils.copyFile(screenCapture, new File(
+                        ".//target/screenshots/"
+                                + getCurrentTimeAsString() +
+                                ".png"));
+            } catch (IOException e) {
+                log("Failed to save screenshot: " + e.getLocalizedMessage());
+            }
+        } else {
+            Shutterbug.shootPage(getDriver(), Capture.FULL_SCROLL).save();
         }
     }
 
