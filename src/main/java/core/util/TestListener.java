@@ -23,10 +23,7 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
         log("Test '" + iTestResult.getName() + "' PASSED");
-//        log("iTestResult.getTestClass().getName() = " + iTestResult.getTestClass().getName());
-//        if(iTestResult.getTestClass().getName().endsWith("LoginTest")) {
             saveScreenshot();
-//        }
     }
 
     @Override
