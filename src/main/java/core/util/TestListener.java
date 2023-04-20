@@ -23,9 +23,10 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
         log("Test '" + iTestResult.getName() + "' PASSED");
-        if(iTestResult.getTestClass().getName().endsWith("LoginTest")) {
+//        log("iTestResult.getTestClass().getName() = " + iTestResult.getTestClass().getName());
+//        if(iTestResult.getTestClass().getName().endsWith("LoginTest")) {
             saveScreenshot();
-        }
+//        }
     }
 
     @Override
@@ -51,18 +52,18 @@ public class TestListener implements ITestListener {
 
     private void saveScreenshot() {
         if(USE_FULL_PAGE_SCREENSHOT) {
+            Shutterbug.shootPage(getDriver(), Capture.FULL_SCROLL).save();
+        } else {
             File screenCapture = ((TakesScreenshot) getDriver())
                     .getScreenshotAs(OutputType.FILE);
             try {
                 FileUtils.copyFile(screenCapture, new File(
-                        ".//target/screenshots/"
+                        ".//target/view_port_screenshots/"
                                 + getCurrentTimeAsString() +
                                 ".png"));
             } catch (IOException e) {
                 log("Failed to save screenshot: " + e.getLocalizedMessage());
             }
-        } else {
-            Shutterbug.shootPage(getDriver(), Capture.FULL_SCROLL).save();
         }
     }
 
