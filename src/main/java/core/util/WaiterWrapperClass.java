@@ -19,4 +19,11 @@ public class WaiterWrapperClass {
         return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
+    
+    public static void waitUntilElementIsNotDisplayed(List<WebElement> webElements) {
+        boolean isDisplayed = true;
+        while (isDisplayed) {
+            isDisplayed = webElements.size() > 0;
+        }
+    }
 }
