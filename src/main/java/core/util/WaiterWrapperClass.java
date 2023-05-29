@@ -22,9 +22,6 @@ public class WaiterWrapperClass {
     }
     
     public static void waitUntilElementIsNotDisplayed(List<WebElement> webElements) {
-        boolean isDisplayed = true;
-        while (isDisplayed) {
-            isDisplayed = webElements.size() > 0;
-        }
+        while (!webElements.isEmpty()) {}
     }
 }
