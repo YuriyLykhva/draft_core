@@ -2,7 +2,6 @@ package core.util;
 
 import com.assertthat.selenium_shutterbug.core.Capture;
 import com.assertthat.selenium_shutterbug.core.Shutterbug;
-import core.driver.WebDriverFactory;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -16,7 +15,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static core.driver.WebDriverFactory.getDriver;
-import static core.util.Constants.USE_FULL_PAGE_SCREENSHOT;
+import static core.util.Settings.PROPERTIES;
 
 public class TestListener implements ITestListener {
 
@@ -47,7 +46,9 @@ public class TestListener implements ITestListener {
     }
 
     private void saveScreenshot() {
-        if(USE_FULL_PAGE_SCREENSHOT) {
+        boolean useFullPageScreenshot = Boolean.parseBoolean(PROPERTIES.getProperty("USE_FULL_PAGE_SCREENSHOT"));
+
+        if(useFullPageScreenshot) {
             Shutterbug.shootPage(getDriver(), Capture.FULL_SCROLL).save();
         } else {
             File screenCapture = ((TakesScreenshot) getDriver())

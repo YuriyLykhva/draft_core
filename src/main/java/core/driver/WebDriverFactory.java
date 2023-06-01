@@ -11,8 +11,7 @@ import org.openqa.selenium.support.ThreadGuard;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static core.util.Constants.REMOTE_WEB_SERVER_URL;
-import static core.util.Constants.USE_REMOTE_WEB_DRIVER;
+import static core.util.Settings.*;
 
 
 public class WebDriverFactory {
@@ -21,15 +20,17 @@ public class WebDriverFactory {
 
     public static synchronized WebDriver getDriver() {
         if (driver.get() == null) {
-            if (USE_REMOTE_WEB_DRIVER) {
+            boolean useRemoteWebDriver = Boolean.parseBoolean(PROPERTIES.getProperty("USE_REMOTE_WEB_DRIVER"));
+            if (useRemoteWebDriver) {
 
                 DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                 desiredCapabilities.setBrowserName("chrome");
                 desiredCapabilities.setPlatform(Platform.WINDOWS);
 
                 try {
+                    String remoteWebServerUrl = PROPERTIES.getProperty("REMOTE_WEB_SERVER_URL");
                     WebDriver remoteWebDriver =
-                            new RemoteWebDriver(new URL(REMOTE_WEB_SERVER_URL), desiredCapabilities);
+                            new RemoteWebDriver(new URL(remoteWebServerUrl), desiredCapabilities);
                     driver.set(ThreadGuard.protect(remoteWebDriver));
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
