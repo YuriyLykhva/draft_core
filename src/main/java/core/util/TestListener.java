@@ -2,47 +2,43 @@ package core.util;
 
 import com.assertthat.selenium_shutterbug.core.Capture;
 import com.assertthat.selenium_shutterbug.core.Shutterbug;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import java.io.File;
-import java.io.IOException;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 import static core.driver.WebDriverFactory.getDriver;
 import static core.util.Settings.PROPERTIES;
 
 public class TestListener implements ITestListener {
 
+    private static final Logger logger = Logger.getLogger(TestListener.class.getName());
+
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        log(String.format("Test '%s' PASSED", iTestResult.getName()));
+        logInfo(String.format("Test '%s' PASSED", iTestResult.getName()));
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        log(String.format("Test '%s' FAILED", iTestResult.getName()));
+        logError(String.format("Test '%s' FAILED", iTestResult.getName()));
         saveScreenshot();
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        log(String.format("Test '%s' SKIPPED", iTestResult.getName()));
+        logWarning(String.format("Test '%s' SKIPPED", iTestResult.getName()));
     }
 
     @Override
     public void onStart(ITestContext iTestContext) {
-        log("Test Started....");
+        logInfo("Test Started....");
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-        log("Test finished");
+        logInfo("Test finished");
     }
 
     private void saveScreenshot() {
@@ -51,25 +47,19 @@ public class TestListener implements ITestListener {
         if(useFullPageScreenshot) {
             Shutterbug.shootPage(getDriver(), Capture.FULL_SCROLL).save();
         } else {
-            File screenCapture = ((TakesScreenshot) getDriver())
-                    .getScreenshotAs(OutputType.FILE);
-            try {
-                FileUtils.copyFile(screenCapture, new File(
-                        ".//target/view_port_screenshots/"
-                                + getCurrentTimeAsString() +
-                                ".png"));
-            } catch (IOException e) {
-                log("Failed to save screenshot: " + e.getLocalizedMessage());
-            }
+            Shutterbug.shootPage(getDriver(), Capture.VIEWPORT).save();
         }
     }
 
-    private void log(String methodName) {
-        System.out.println(methodName);
+    public static void logInfo(String message) {
+        logger.info(message);
     }
 
-    private String getCurrentTimeAsString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd_HH-mm-ss");
-        return ZonedDateTime.now().format(formatter);
+    public static void logWarning(String message) {
+        logger.warning(message);
+    }
+
+    public static void logError(String message) {
+        logger.severe(message);
     }
 }

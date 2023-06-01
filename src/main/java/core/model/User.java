@@ -25,8 +25,8 @@ public class User {
     }
 
     private static final ResourceBundle resourceBundle =
-//            ResourceBundle.getBundle("admin");
-            ResourceBundle.getBundle("user");
+            ResourceBundle.getBundle("admin");
+//            ResourceBundle.getBundle("user");
 
     public static String getTestData(String key) {
         return resourceBundle.getString(key);
