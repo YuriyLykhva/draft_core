@@ -22,18 +22,18 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        log("Test '" + iTestResult.getName() + "' PASSED");
+        log(String.format("Test '%s' PASSED", iTestResult.getName()));
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        log("Test '" + iTestResult.getName() + "' FAILED");
+        log(String.format("Test '%s' FAILED", iTestResult.getName()));
         saveScreenshot();
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        log("Test '" + iTestResult.getName() + "' SKIPPED");
+        log(String.format("Test '%s' SKIPPED", iTestResult.getName()));
     }
 
     @Override
