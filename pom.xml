@@ -15,43 +15,58 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <allure.version>2.20.1</allure.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <selenium.version>3.141.59</selenium.version>
+        <testng.version>7.3.0</testng.version>
+        <junit-jupiter.version>5.9.2</junit-jupiter.version>
+        <surefire.version>2.22.2</surefire.version>
+        <opencsv.version>5.4</opencsv.version>
+        <rest-assured.version>4.5.1</rest-assured.version>
+        <webdrivermanager.version>5.3.2</webdrivermanager.version>
+        <shutterbug.version>1.6</shutterbug.version>
+        <sonar.version>3.7.0.1746</sonar.version>
+        <junit.version>4.13.2</junit.version>
+        <cucumber.version>7.11.1</cucumber.version>
+        <wiremock.version>2.35.0</wiremock.version>
+        <jackson.version>2.15.0</jackson.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.20.1</version>
+            <version>${allure.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.30</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
-            <version>3.141.59</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.3.0</version>
+            <version>${testng.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.9.2</version>
+            <version>${junit-jupiter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.2</version>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -62,12 +77,12 @@
         <dependency>
             <groupId>org.apache.maven.surefire</groupId>
             <artifactId>maven-surefire-common</artifactId>
-            <version>2.22.2</version>
+            <version>${surefire.version}</version>
         </dependency>
         <dependency>
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
-            <version>5.4</version>
+            <version>${opencsv.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -78,57 +93,57 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>4.5.1</version>
+            <version>${rest-assured.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.3.2</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
-            <version>3.141.59</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>com.assertthat</groupId>
             <artifactId>selenium-shutterbug</artifactId>
-            <version>1.6</version>
+            <version>${shutterbug.version}</version>
         </dependency>
              <dependency>
             <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
-            <version>3.7.0.1746</version>
+            <version>${sonar.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>${junit.version}</version>
         </dependency>
          <dependency>
              <groupId>io.cucumber</groupId>
              <artifactId>cucumber-java8</artifactId>
-             <version>7.11.1</version>
+             <version>${cucumber.version}</version>
          </dependency>
          <dependency>
              <groupId>io.cucumber</groupId>
              <artifactId>cucumber-junit</artifactId>
-             <version>7.11.1</version>
+             <version>${cucumber.version}</version>
          </dependency>
              <dependency>
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock-jre8</artifactId>
-            <version>2.35.0</version>
+            <version>${wiremock.version}</version>
         </dependency>
          <dependency>
              <groupId>com.fasterxml.jackson.core</groupId>
              <artifactId>jackson-core</artifactId>
-             <version>2.15.0</version>
+             <version>${jackson.version}</version>
          </dependency>
          <dependency>
              <groupId>com.fasterxml.jackson.core</groupId>
              <artifactId>jackson-databind</artifactId>
-             <version>2.15.0</version>
+             <version>${jackson.version}</version>
          </dependency>
     </dependencies>
          
