@@ -30,6 +30,7 @@
         <cucumber.version>7.11.1</cucumber.version>
         <wiremock.version>2.35.0</wiremock.version>
         <jackson.version>2.15.0</jackson.version>
+        <selenide.version>6.15.0</selenide.version>
     </properties>
 
     <dependencies>
@@ -145,6 +146,11 @@
              <artifactId>jackson-databind</artifactId>
              <version>${jackson.version}</version>
          </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide.version}</version>
+        </dependency>
     </dependencies>
          
 
