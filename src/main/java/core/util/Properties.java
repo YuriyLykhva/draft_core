@@ -30,6 +30,8 @@ public class Properties {
                 // Remove the data from the map
                 map.remove("key1");
                 map.remove("key2");
+
+                threadLocalMap.remove();
             }
         };
 
@@ -49,6 +51,8 @@ public class Properties {
                 // Remove the data from the map
                 map.remove("key3");
                 map.remove("key4");
+
+                threadLocalMap.remove();
             }
         };
 
@@ -65,6 +69,7 @@ public class Properties {
             thread2.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 }
