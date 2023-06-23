@@ -17,11 +17,13 @@ import static core.util.Settings.*;
 public class WebDriverFactory {
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    protected static final String useRemoteWebDriver = System.getProperty("USE_REMOTE_WEB_DRIVER");
 
     public static synchronized WebDriver getDriver() {
         if (driver.get() == null) {
-            boolean useRemoteWebDriver = Boolean.parseBoolean(PROPERTIES.getProperty("USE_REMOTE_WEB_DRIVER"));
-            if (useRemoteWebDriver) {
+//            boolean useRemoteWebDriver = Boolean.parseBoolean(PROPERTIES.getProperty("USE_REMOTE_WEB_DRIVER"));
+//            if (useRemoteWebDriver) {
+            if (Boolean.parseBoolean(useRemoteWebDriver)) {
 
                 DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                 desiredCapabilities.setBrowserName("chrome");
